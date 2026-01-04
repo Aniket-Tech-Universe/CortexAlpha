@@ -86,7 +86,6 @@ export async function POST(req: Request) {
                     logServer(`[Probe] Checking validity...`);
                     await generateText({
                         model: google(model),
-                        message: "Hydra Probe",
                         messages: [{ role: 'user', content: 'Ping' }],
                     });
 
