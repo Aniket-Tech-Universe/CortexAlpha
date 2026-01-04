@@ -23,7 +23,7 @@ interface EmptyStateLiteProps {
  */
 export function EmptyStateLite({ onSuggestionClick }: EmptyStateLiteProps) {
     return (
-        <div className="flex flex-col h-full items-center text-center px-4 animate-fade-in">
+        <div className="flex flex-col h-full items-center text-center px-4 animate-fade-in overflow-hidden relative">
             {/* 1. TOP: Title and Text - Moved Lower */}
             <div className="flex flex-col items-center pt-24 pb-2 animate-fade-in-up shrink-0">
                 <h1 className="text-3xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white via-indigo-100 to-indigo-300/80 pb-2 filter drop-shadow-[0_0_25px_rgba(99,102,241,0.3)]">

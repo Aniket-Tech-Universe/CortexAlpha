@@ -379,7 +379,7 @@ export default function ChatInterface() {
     ];
 
     return (
-        <div className="flex h-[100dvh] overflow-hidden font-sans text-zinc-100 pb-safe">
+        <div className="fixed inset-0 overflow-hidden font-sans text-zinc-100 pb-safe z-0 bg-black">
             {/* Sidebar */}
             <AnimatePresence mode="wait">
                 {isSidebarOpen && (
