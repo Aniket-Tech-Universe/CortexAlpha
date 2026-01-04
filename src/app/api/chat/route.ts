@@ -86,7 +86,8 @@ export async function POST(req: Request) {
                     logServer(`[Probe] Checking validity...`);
                     await generateText({
                         model: google(model),
-                        messages: [{ role: 'user', content: ' ' }], // Empty space to trigger minimal processing
+                        message: "Hydra Probe",
+                        messages: [{ role: 'user', content: 'Ping' }],
                     });
 
                     // 2. STREAM: If probe passed, we are 99% sure streaming will start safely
