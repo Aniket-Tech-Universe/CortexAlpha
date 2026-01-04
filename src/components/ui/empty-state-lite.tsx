@@ -47,21 +47,21 @@ export function EmptyStateLite({ onSuggestionClick }: EmptyStateLiteProps) {
                     <div className="absolute w-32 h-32 bg-indigo-500/5 rounded-full blur-3xl animate-pulse" />
                 </div>
 
-                {/* 3. MIDDLE: Suggestions (Centered) */}
-                <div className="w-full overflow-x-auto scrollbar-hide snap-x flex justify-center gap-3 animate-fade-in-up animation-delay-300 px-2 absolute top-1/2 left-0 right-0 -translate-y-1/2 mt-2">
+                {/* 3. MIDDLE: Suggestions (2x2 Grid Stack) */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-2 w-full max-w-[340px] grid grid-cols-2 gap-3 px-4 animate-fade-in-up animation-delay-300 z-20">
                     {suggestions.map((s, i) => (
                         <div
                             key={i}
                             onClick={() => onSuggestionClick(s.prompt)}
-                            className="snap-center shrink-0 cursor-pointer active:scale-95 transition-transform duration-200"
+                            className="cursor-pointer active:scale-95 transition-transform duration-200"
                         >
                             <SpotlightCard
-                                className="min-w-[160px] p-3 flex flex-col items-start gap-2 rounded-2xl border border-indigo-500/20 bg-black/40 backdrop-blur-md shadow-lg shadow-black/20"
+                                className="h-full p-3 flex flex-col items-start gap-2 rounded-2xl border border-indigo-500/30 bg-black/60 backdrop-blur-xl shadow-lg shadow-black/40 hover:bg-white/5 transition-colors"
                             >
-                                <div className="p-1.5 rounded-lg bg-indigo-500/10 text-indigo-400 w-fit">
+                                <div className="p-1.5 rounded-lg bg-indigo-500/20 text-indigo-300 w-fit">
                                     <s.icon size={16} />
                                 </div>
-                                <span className="text-xs font-medium text-indigo-100/80">{s.text}</span>
+                                <span className="text-xs font-medium text-indigo-100/90 leading-tight">{s.text}</span>
                             </SpotlightCard>
                         </div>
                     ))}
