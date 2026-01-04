@@ -651,7 +651,7 @@ export default function ChatInterface() {
 
                     <div className="flex items-center gap-2 bg-black/40 backdrop-blur-xl border border-white/10 px-3 py-1.5 rounded-full pointer-events-auto">
                         <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                        <span className="text-xs font-medium text-zinc-300">OmniAgent</span>
+                        <span className="text-xs font-medium text-zinc-300">CortexAlpha</span>
                         <span className="text-[10px] text-zinc-500 ml-1">•</span>
                         <span className="text-[10px] text-violet-400/70 font-mono">Gemini 2.5 Flash</span>
                     </div>
@@ -697,7 +697,7 @@ export default function ChatInterface() {
                                     </div>
 
                                     <h1 className="relative text-3xl md:text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60 pb-2 filter drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]">
-                                        OmniAgent
+                                        CortexAlpha
                                     </h1>
                                 </motion.div>
                                 <motion.p
@@ -1064,7 +1064,7 @@ export default function ChatInterface() {
                                     onChange={(e) => setInput(e.target.value)}
                                     onKeyDown={handleKeyDown}
                                     onPaste={handlePaste}
-                                    placeholder={isMobile ? "Ask OmniAgent..." : "Ask OmniAgent... (paste images with Ctrl+V)"}
+                                    placeholder={isMobile ? "Ask CortexAlpha..." : "Ask CortexAlpha... (paste images with Ctrl+V)"}
                                     className="flex-1 bg-transparent border-none outline-none text-zinc-100 placeholder:text-zinc-600 py-3.5 max-h-[150px] min-h-[52px] resize-none overflow-y-auto font-medium"
                                     rows={1}
                                     disabled={isLoading}

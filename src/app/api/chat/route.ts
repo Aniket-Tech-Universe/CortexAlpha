@@ -38,7 +38,7 @@ export async function POST(req: Request) {
         const { messages, config } = await req.json();
         const allKeys = getAllKeys();
 
-        const systemPrompt = config?.systemInstruction || "You are OmniAgent, an AI assistant. Keep responses brief and use markdown.";
+        const systemPrompt = config?.systemInstruction || "You are CortexAlpha, an AI assistant. Keep responses brief and use markdown.";
         const temperature = config?.temperature ?? 0.7;
 
         logDebug(`Received request. Messages: ${messages.length}. Config: ${JSON.stringify(config)}`);
