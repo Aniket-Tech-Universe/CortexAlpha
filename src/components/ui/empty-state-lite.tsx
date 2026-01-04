@@ -61,12 +61,12 @@ export function EmptyStateLite({ onSuggestionClick }: EmptyStateLiteProps) {
                             className="cursor-pointer active:scale-95 transition-transform duration-200"
                         >
                             <SpotlightCard
-                                className="h-[90px] p-3 flex flex-col items-start gap-2 rounded-2xl border border-indigo-500/30 bg-black/80 backdrop-blur-xl shadow-lg shadow-black/50 hover:bg-white/5 transition-colors"
+                                className="h-[80px] p-3 flex flex-row items-center gap-3 rounded-2xl border border-indigo-500/30 bg-black/80 backdrop-blur-xl shadow-lg shadow-black/50 hover:bg-white/5 transition-colors"
                             >
-                                <div className="p-1.5 rounded-lg bg-indigo-500/20 text-indigo-300 w-fit shrink-0">
-                                    <s.icon size={16} />
+                                <div className="p-2 rounded-lg bg-indigo-500/20 text-indigo-300 w-fit shrink-0">
+                                    <s.icon size={18} />
                                 </div>
-                                <span className="text-xs font-medium text-indigo-100/90 leading-tight line-clamp-2">{s.text}</span>
+                                <span className="text-xs font-medium text-indigo-100/90 leading-tight line-clamp-2 text-left">{s.text}</span>
                             </SpotlightCard>
                         </div>
                     ))}
