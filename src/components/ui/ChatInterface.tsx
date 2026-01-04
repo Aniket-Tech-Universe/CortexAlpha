@@ -676,8 +676,8 @@ export default function ChatInterface() {
                                     className="relative z-10 flex flex-col items-center justify-center p-2"
                                 >
                                     {/* Rotating Wireframe Globe Background - SIZED TO FIT */}
-                                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[-1] overflow-hidden">
-                                        <WireframeGlobe className="scale-[1.2] md:scale-[2.8] opacity-30 mix-blend-screen" />
+                                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[-1] overflow-hidden -translate-y-20 md:translate-y-0">
+                                        <WireframeGlobe className="scale-[1.0] md:scale-[2.8] opacity-30 mix-blend-screen" />
                                     </div>
 
                                     {/* Dual Counter-Rotating Rings (Gyroscope Effect) */}
