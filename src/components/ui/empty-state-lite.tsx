@@ -37,14 +37,14 @@ export function EmptyStateLite({ onSuggestionClick }: EmptyStateLiteProps) {
             {/* 2. MIDDLE: Dual Rings (Desktop Style) + Suggestions */}
             <div className="flex-1 flex flex-col items-center justify-center w-full relative -mt-8">
                 {/* Dual Counter-Rotating Rings */}
-                <div className="relative w-[280px] h-[280px] flex items-center justify-center mb-8">
-                    {/* Inner Ring (Clockwise) */}
-                    <div className="absolute inset-0 rounded-full border border-indigo-500/20 border-dashed animate-spin-slow shadow-[0_0_40px_rgba(99,102,241,0.1)]" />
-                    {/* Outer Ring (Counter-Clockwise) */}
-                    <div className="absolute inset-[-20px] rounded-full border border-violet-500/10 border-dashed animate-spin-reverse-slow" />
+                <div className="relative w-[320px] h-[320px] flex items-center justify-center mb-8">
+                    {/* Inner Ring (Clockwise) - BRIGHTER */}
+                    <div className="absolute inset-0 rounded-full border border-indigo-400/40 border-dashed animate-spin-slow shadow-[0_0_50px_rgba(99,102,241,0.25)]" />
+                    {/* Outer Ring (Counter-Clockwise) - BRIGHTER */}
+                    <div className="absolute inset-[-20px] rounded-full border border-violet-400/30 border-dashed animate-spin-reverse-slow" />
 
                     {/* Center Glow */}
-                    <div className="absolute w-32 h-32 bg-indigo-500/5 rounded-full blur-3xl animate-pulse" />
+                    <div className="absolute w-40 h-40 bg-indigo-500/10 rounded-full blur-3xl animate-pulse" />
                 </div>
 
                 {/* 3. MIDDLE: Suggestions (2x2 Grid Stack) */}
