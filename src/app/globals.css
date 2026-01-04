@@ -313,6 +313,11 @@ textarea {
   touch-action: manipulation;
 }
 
+/* Safe Area Utility */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
 /* === Mobile UX Animations (AXRACO Pattern) === */
 @keyframes fade-in-up {
   from {
