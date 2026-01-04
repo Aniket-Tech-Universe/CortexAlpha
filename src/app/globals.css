@@ -352,6 +352,10 @@ textarea {
   animation: spin-slow 20s linear infinite;
 }
 
+.animate-spin-reverse-slow {
+  animation: spin-slow 20s linear infinite reverse;
+}
+
 .animation-delay-100 {
   animation-delay: 0.1s;
   opacity: 0;
