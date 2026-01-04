@@ -14,6 +14,7 @@ import { toast } from "sonner";
 import { SettingsModal } from "./SettingsModal";
 import { ArtifactPanel } from "./ArtifactPanel";
 import { useIsMobile } from "../../hooks/use-mobile";
+import { EmptyStateLite } from "./empty-state-lite";
 
 export default function ChatInterface() {
     const isMobile = useIsMobile();
@@ -669,102 +670,106 @@ export default function ChatInterface() {
                         artifact.isOpen && "mr-[45%] md:mr-[46%]"
                     )}>
                         {messages.length === 0 ? (
-                            <div className="flex flex-col justify-end items-center text-center space-y-2 md:space-y-8 animate-fade-in"> {/* Removed flex-1, aligned end */}
-                                <motion.div
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    className="relative z-10 flex flex-col items-center justify-center p-2"
-                                >
-                                    {/* Rotating Wireframe Globe Background - SIZED TO FIT */}
-                                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[-1] overflow-hidden">
-                                        <WireframeGlobe className="scale-[1.2] md:scale-[2.8] opacity-30 mix-blend-screen" />
-                                    </div>
-
-                                    {/* Dual Counter-Rotating Rings (Gyroscope Effect) */}
-                                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                                        {/* Ring 1 - Horizontalish (Clockwise) */}
-                                        <motion.div
-                                            className="absolute w-[120%] h-[120%] md:w-[600px] md:h-[300px] rounded-[100%] border border-cyan-400/40 border-dashed"
-                                            animate={{ rotate: 360 }}
-                                            transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-                                        />
-                                        {/* Ring 2 - Verticalish (Counter-Clockwise) */}
-                                        <motion.div
-                                            className="absolute w-[120%] h-[120%] md:w-[300px] md:h-[600px] rounded-[100%] border border-violet-400/40 border-dashed"
-                                            animate={{ rotate: -360 }}
-                                            transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-                                        />
-                                    </div>
-
-                                    <h1 className="relative text-3xl md:text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60 pb-2 filter drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]">
-                                        CortexAlpha
-                                    </h1>
-                                </motion.div>
-                                <motion.p
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ delay: 0.2 }}
-                                    className="text-zinc-400 text-sm md:text-base max-w-sm mx-auto leading-relaxed"
-                                >
-                                    Unlock the power of neural intelligence. Ask me anything about code, creativity, or complex analysis.
-                                </motion.p>
-
-                                {/* Keyboard Hints - Desktop Only */}
-                                {!isMobile && (
+                            isMobile ? (
+                                <EmptyStateLite onSuggestionClick={(prompt) => handleSubmit(undefined, prompt)} />
+                            ) : (
+                                <div className="flex flex-col justify-end items-center text-center space-y-2 md:space-y-8 animate-fade-in"> {/* Desktop Empty State */}
                                     <motion.div
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        className="relative z-10 flex flex-col items-center justify-center p-2"
+                                    >
+                                        {/* Rotating Wireframe Globe Background - SIZED TO FIT */}
+                                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[-1] overflow-hidden">
+                                            <WireframeGlobe className="scale-[1.2] md:scale-[2.8] opacity-30 mix-blend-screen" />
+                                        </div>
+
+                                        {/* Dual Counter-Rotating Rings (Gyroscope Effect) */}
+                                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                            {/* Ring 1 - Horizontalish (Clockwise) */}
+                                            <motion.div
+                                                className="absolute w-[120%] h-[120%] md:w-[600px] md:h-[300px] rounded-[100%] border border-cyan-400/40 border-dashed"
+                                                animate={{ rotate: 360 }}
+                                                transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+                                            />
+                                            {/* Ring 2 - Verticalish (Counter-Clockwise) */}
+                                            <motion.div
+                                                className="absolute w-[120%] h-[120%] md:w-[300px] md:h-[600px] rounded-[100%] border border-violet-400/40 border-dashed"
+                                                animate={{ rotate: -360 }}
+                                                transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+                                            />
+                                        </div>
+
+                                        <h1 className="relative text-3xl md:text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60 pb-2 filter drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                                            CortexAlpha
+                                        </h1>
+                                    </motion.div>
+                                    <motion.p
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
-                                        transition={{ delay: 0.4 }}
-                                        className="flex items-center justify-center gap-4 mt-8 text-[10px] text-zinc-500 font-mono"
+                                        transition={{ delay: 0.2 }}
+                                        className="text-zinc-400 text-sm md:text-base max-w-sm mx-auto leading-relaxed"
                                     >
-                                        <div className="flex items-center gap-1.5">
-                                            <kbd className="px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-zinc-400">Ctrl</kbd>
-                                            <span>+</span>
-                                            <kbd className="px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-zinc-400">N</kbd>
-                                            <span className="ml-1">New Chat</span>
-                                        </div>
-                                        <div className="flex items-center gap-1.5">
-                                            <kbd className="px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-zinc-400">Ctrl</kbd>
-                                            <span>+</span>
-                                            <kbd className="px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-zinc-400">/</kbd>
-                                            <span className="ml-1">Toggle Sidebar</span>
-                                        </div>
-                                    </motion.div>
-                                )}
+                                        Unlock the power of neural intelligence. Ask me anything about code, creativity, or complex analysis.
+                                    </motion.p>
 
-                                <div className={cn(
-                                    "w-full max-w-2xl px-4 mt-4 md:mt-24 relative z-20", // Reduced margin to mt-4
-                                    isMobile ? "overflow-x-auto scrolbar-hide -mx-4 pb-4 snap-x flex gap-3 pr-8" : "grid grid-cols-1 md:grid-cols-2 gap-3"
-                                )}>
-                                    {suggestions.map((s, i) => (
+                                    {/* Keyboard Hints - Desktop Only */}
+                                    {!isMobile && (
                                         <motion.div
-                                            key={i}
-                                            initial={{ opacity: 0, y: 20 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            transition={{ delay: 0.5 + (i * 0.1) }}
-                                            className={cn(isMobile && "snap-center shrink-0")}
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            transition={{ delay: 0.4 }}
+                                            className="flex items-center justify-center gap-4 mt-8 text-[10px] text-zinc-500 font-mono"
                                         >
-                                            <SpotlightCard
-                                                className={cn(
-                                                    "h-full rounded-2xl border border-white/5 bg-white/5 hover:bg-white/10 hover:border-white/10 transition-colors cursor-pointer active:scale-95 duration-200",
-                                                    isMobile ? "min-w-[240px] p-3 flex flex-col items-start gap-2" : "p-4 flex flex-col items-start gap-3"
-                                                )}
-                                            >
-                                                <div
-                                                    className="absolute inset-0 z-10"
-                                                    onClick={() => handleSubmit(undefined, s.prompt)}
-                                                    role="button"
-                                                    tabIndex={0}
-                                                />
-                                                <div className="p-1.5 rounded-lg bg-violet-500/10 text-violet-400 group-hover:bg-violet-500/20 group-hover:scale-110 transition-all w-fit">
-                                                    <s.icon size={16} />
-                                                </div>
-                                                <span className="text-xs font-medium text-zinc-300 group-hover:text-white transition-colors">{s.text}</span>
-                                            </SpotlightCard>
+                                            <div className="flex items-center gap-1.5">
+                                                <kbd className="px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-zinc-400">Ctrl</kbd>
+                                                <span>+</span>
+                                                <kbd className="px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-zinc-400">N</kbd>
+                                                <span className="ml-1">New Chat</span>
+                                            </div>
+                                            <div className="flex items-center gap-1.5">
+                                                <kbd className="px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-zinc-400">Ctrl</kbd>
+                                                <span>+</span>
+                                                <kbd className="px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-zinc-400">/</kbd>
+                                                <span className="ml-1">Toggle Sidebar</span>
+                                            </div>
                                         </motion.div>
-                                    ))}
+                                    )}
+
+                                    <div className={cn(
+                                        "w-full max-w-2xl px-4 mt-4 md:mt-24 relative z-20", // Reduced margin to mt-4
+                                        isMobile ? "overflow-x-auto scrolbar-hide -mx-4 pb-4 snap-x flex gap-3 pr-8" : "grid grid-cols-1 md:grid-cols-2 gap-3"
+                                    )}>
+                                        {suggestions.map((s, i) => (
+                                            <motion.div
+                                                key={i}
+                                                initial={{ opacity: 0, y: 20 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ delay: 0.5 + (i * 0.1) }}
+                                                className={cn(isMobile && "snap-center shrink-0")}
+                                            >
+                                                <SpotlightCard
+                                                    className={cn(
+                                                        "h-full rounded-2xl border border-white/5 bg-white/5 hover:bg-white/10 hover:border-white/10 transition-colors cursor-pointer active:scale-95 duration-200",
+                                                        isMobile ? "min-w-[240px] p-3 flex flex-col items-start gap-2" : "p-4 flex flex-col items-start gap-3"
+                                                    )}
+                                                >
+                                                    <div
+                                                        className="absolute inset-0 z-10"
+                                                        onClick={() => handleSubmit(undefined, s.prompt)}
+                                                        role="button"
+                                                        tabIndex={0}
+                                                    />
+                                                    <div className="p-1.5 rounded-lg bg-violet-500/10 text-violet-400 group-hover:bg-violet-500/20 group-hover:scale-110 transition-all w-fit">
+                                                        <s.icon size={16} />
+                                                    </div>
+                                                    <span className="text-xs font-medium text-zinc-300 group-hover:text-white transition-colors">{s.text}</span>
+                                                </SpotlightCard>
+                                            </motion.div>
+                                        ))}
+                                    </div>
                                 </div>
-                            </div>
+                            )
                         ) : (
                             <div className="space-y-6">
                                 {messages.map((msg, index) => (
