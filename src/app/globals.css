@@ -12,16 +12,8 @@
 
 @layer base {
 
-  html,
   body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    /* Prevent scroll */
-    overscroll-behavior: none;
-    /* Prevent iOS rubber-banding */
-    @apply antialiased bg-black text-white selection:bg-violet-500/30 selection:text-white;
+    @apply antialiased overflow-hidden bg-black text-white selection:bg-violet-500/30 selection:text-white;
   }
 
   body {
