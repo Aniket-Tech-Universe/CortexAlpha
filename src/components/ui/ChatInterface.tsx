@@ -993,7 +993,7 @@ export default function ChatInterface() {
 
                 {/* Floating Input Area */}
                 <div className={cn(
-                    "absolute bottom-6 left-0 right-0 px-4 md:px-0 z-30 pointer-events-none transition-all duration-300",
+                    "absolute bottom-6 left-0 right-0 px-4 md:px-0 z-30 pointer-events-none transition-all duration-300 pb-safe",
                     artifact.isOpen && "pr-[45%]" // Adjust input when artifact is open
                 )}>
                     <div className="max-w-5xl mx-auto w-full pointer-events-auto">
