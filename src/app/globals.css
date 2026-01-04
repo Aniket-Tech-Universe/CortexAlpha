@@ -1,0 +1,314 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #050507;
+  /* Ultra-Deep Onyx */
+  --color-foreground: #fafafa;
+  --color-primary: #8b5cf6;
+  --color-secondary: #6366f1;
+  --font-sans: var(--font-sans), system-ui, sans-serif;
+  --font-mono: var(--font-mono), monospace;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    background-image:
+      radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.08), transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.05), transparent 40%);
+    background-attachment: fixed;
+    color: var(--color-foreground);
+    @apply antialiased overflow-hidden selection:bg-violet-500/30 selection:text-white;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply backdrop-blur-xl border-t border-b border-white/[0.03] bg-white/[0.01];
+  }
+
+  .glass-panel {
+    @apply backdrop-blur-2xl border border-white/[0.08] shadow-2xl bg-[#0a0a0a]/80;
+  }
+
+  .glass-sidebar {
+    @apply backdrop-blur-xl border-r border-white/[0.05] bg-[#050505]/60;
+  }
+
+  .active-session-glow {
+    @apply relative overflow-hidden;
+  }
+
+  .active-session-glow::before {
+    content: "";
+    @apply absolute inset-0 bg-gradient-to-r from-violet-500/10 to-transparent pointer-events-none;
+  }
+
+  /* Scrollbar hiding */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Custom Scrollbar for Code/Content */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-white/10 rounded-full hover:bg-white/20;
+  }
+
+  /* Minimalist Message Bubbles */
+  .message-bubble-user {
+    @apply rounded-2xl rounded-tr-sm px-5 py-3.5 bg-[#1a1a1e] text-zinc-100 border border-white/[0.06] shadow-sm;
+  }
+
+  .message-bubble-ai {
+    @apply rounded-2xl px-1 py-1 text-zinc-200;
+  }
+
+  /* Markdown Typography */
+  .message-bubble-ai p {
+    @apply leading-7 mb-4 last:mb-0 text-[15px] text-zinc-300;
+  }
+
+  .message-bubble-ai strong {
+    @apply font-semibold text-white;
+  }
+
+  .message-bubble-ai h1,
+  .message-bubble-ai h2,
+  .message-bubble-ai h3 {
+    @apply font-semibold text-white mt-6 mb-3 first:mt-0 tracking-tight;
+  }
+
+  .message-bubble-ai h1 {
+    @apply text-xl;
+  }
+
+  .message-bubble-ai h2 {
+    @apply text-lg;
+  }
+
+  .message-bubble-ai ul {
+    @apply list-disc ml-5 mb-4 space-y-1 marker:text-zinc-500 text-zinc-300;
+  }
+
+  .message-bubble-ai ol {
+    @apply list-decimal ml-5 mb-4 space-y-1 marker:text-zinc-500 text-zinc-300;
+  }
+
+  .message-bubble-ai p>code,
+  .message-bubble-ai li>code,
+  .message-bubble-ai ol>code {
+    @apply font-mono text-sm bg-white/5 px-1.5 py-0.5 rounded text-violet-300 border border-white/5;
+  }
+
+  /* Reset for Syntax Highlighter just in case */
+  .message-bubble-ai pre code,
+  .message-bubble-ai div[class*="language-"] code {
+    @apply bg-transparent p-0 border-none text-inherit;
+  }
+
+  .message-bubble-ai blockquote {
+    @apply border-l-2 border-violet-500/30 pl-4 py-1 italic text-zinc-400 bg-white/[0.02] rounded-r-lg;
+  }
+
+  .message-bubble-ai a {
+    @apply text-violet-400 hover:text-violet-300 underline underline-offset-4 transition-colors;
+  }
+
+  /* Suggestion Cards */
+  .suggestion-card {
+    @apply p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] hover:border-violet-500/20 transition-all duration-300 cursor-pointer text-left backdrop-blur-sm shadow-sm hover:shadow-lg hover:shadow-violet-500/5;
+  }
+
+  /* Typing Dots Animation */
+  .typing-dot {
+    @apply w-2 h-2 rounded-full bg-violet-400;
+    animation: typingBounce 1.4s infinite ease-in-out both;
+  }
+
+  .typing-dot:nth-child(1) {
+    animation-delay: -0.32s;
+  }
+
+  .typing-dot:nth-child(2) {
+    animation-delay: -0.16s;
+  }
+
+  .typing-dot:nth-child(3) {
+    animation-delay: 0s;
+  }
+
+  /* AI Avatar */
+  .ai-avatar {
+    @apply w-7 h-7 rounded-full bg-gradient-to-tr from-violet-500 to-indigo-500 flex items-center justify-center text-[10px] font-bold text-white shadow-lg shrink-0;
+  }
+
+  /* Input Focus Glow */
+  .input-glow:focus-within {
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.3), 0 0 20px rgba(139, 92, 246, 0.15);
+  }
+
+  /* Message Timestamp */
+  .message-timestamp {
+    @apply text-[10px] text-zinc-500 opacity-0 group-hover:opacity-100 transition-opacity duration-200;
+  }
+
+  /* Character Counter */
+  .char-counter {
+    @apply text-[10px] text-zinc-500 tabular-nums;
+  }
+
+  .char-counter-warning {
+    @apply text-amber-400;
+  }
+
+  .char-counter-limit {
+    @apply text-red-400;
+  }
+
+  /* Fade In Animation */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  /* Slide Up Animation */
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out forwards;
+  }
+
+  /* Gradient Text Shimmer */
+  .gradient-text-shimmer {
+    background: linear-gradient(90deg,
+        rgba(139, 92, 246, 1) 0%,
+        rgba(99, 102, 241, 1) 25%,
+        rgba(236, 72, 153, 1) 50%,
+        rgba(99, 102, 241, 1) 75%,
+        rgba(139, 92, 246, 1) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s linear infinite;
+  }
+
+  /* Button Press Animation */
+  .btn-press:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+  }
+
+  /* Glowing Border */
+  .glow-border {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3), 0 0 40px rgba(139, 92, 246, 0.1);
+  }
+
+  /* Pulse Glow */
+  .animate-pulse-glow {
+    animation: pulseGlow 2s infinite;
+  }
+}
+
+@keyframes typingBounce {
+
+  0%,
+  80%,
+  100% {
+    transform: scale(0.6);
+    opacity: 0.5;
+  }
+
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes pulseGlow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(139, 92, 246, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.6), 0 0 40px rgba(139, 92, 246, 0.2);
+  }
+}
+
+/* Mobile Table Scrolling */
+@media (max-width: 768px) {
+  .prose table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .prose thead,
+  .prose tbody {
+    min-width: 100%;
+  }
+}
+
+/* Better Touch Targets */
+button,
+a,
+input,
+textarea {
+  touch-action: manipulation;
+}
