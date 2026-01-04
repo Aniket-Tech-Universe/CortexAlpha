@@ -662,32 +662,6 @@ export default function ChatInterface() {
                 {/* Interactive Starfield Background (Canvas) */}
                 <InteractiveConstellation />
 
-                {/* INDEPENDENT 3D GLOBE LAYER - Decoupled from Text Flow */}
-                {messages.length === 0 && (
-                    <>
-                        {/* Rotating Wireframe Globe */}
-                        <div className="absolute top-[15%] md:top-0 inset-x-0 h-[300px] md:h-full flex items-center justify-center pointer-events-none z-0 overflow-hidden">
-                            <WireframeGlobe className="scale-[1.0] md:scale-[2.8] opacity-30 mix-blend-screen" />
-                        </div>
-
-                        {/* Dual Counter-Rotating Rings (Gyroscope) */}
-                        <div className="absolute top-[15%] md:top-0 inset-x-0 h-[300px] md:h-full flex items-center justify-center pointer-events-none z-0">
-                            {/* Ring 1 */}
-                            <motion.div
-                                className="absolute w-[300px] h-[300px] md:w-[600px] md:h-[300px] rounded-[100%] border border-cyan-400/40 border-dashed"
-                                animate={{ rotate: 360 }}
-                                transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-                            />
-                            {/* Ring 2 */}
-                            <motion.div
-                                className="absolute w-[300px] h-[300px] md:w-[300px] md:h-[600px] rounded-[100%] border border-violet-400/40 border-dashed"
-                                animate={{ rotate: -360 }}
-                                transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-                            />
-                        </div>
-                    </>
-                )}
-
                 {/* Messages Container */}
                 <div className="flex-1 overflow-y-auto custom-scrollbar scroll-smooth" ref={scrollRef} onScroll={handleScroll}>
                     <div className={cn(
@@ -695,24 +669,47 @@ export default function ChatInterface() {
                         artifact.isOpen && "mr-[45%] md:mr-[46%]"
                     )}>
                         {messages.length === 0 ? (
-                            <div className="flex flex-col justify-end items-center text-center space-y-2 md:space-y-8 animate-fade-in"> {/* Removed flex-1, aligned end */}
+                            <div className="flex flex-col h-full md:h-auto justify-between md:justify-end items-center text-center space-y-0 md:space-y-8 animate-fade-in pt-12 md:pt-0">
+                                {/* 1. TOP: Title and Text (Mobile Only placement logic) */}
                                 <motion.div
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     className="relative z-10 flex flex-col items-center justify-center p-2"
                                 >
-                                    <h1 className="relative text-3xl md:text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60 pb-2 filter drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                                    <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60 pb-2 filter drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]">
                                         CortexAlpha
                                     </h1>
+                                    <motion.p
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        transition={{ delay: 0.2 }}
+                                        className="text-zinc-400 text-sm md:text-base max-w-sm mx-auto leading-relaxed mt-2"
+                                    >
+                                        Unlock the power of neural intelligence.
+                                    </motion.p>
                                 </motion.div>
-                                <motion.p
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ delay: 0.2 }}
-                                    className="text-zinc-400 text-sm md:text-base max-w-sm mx-auto leading-relaxed"
-                                >
-                                    Unlock the power of neural intelligence. Ask me anything about code, creativity, or complex analysis.
-                                </motion.p>
+
+                                {/* 2. MIDDLE: Globe (Absolute Center) */}
+                                <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden mt-0 md:mt-0">
+                                    <WireframeGlobe className="scale-[1.0] md:scale-[2.8] opacity-30 mix-blend-screen" />
+                                </div>
+
+                                {/* Dual Counter-Rotating Rings (Gyroscope Effect) */}
+                                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                    {/* Ring 1 - Horizontalish (Clockwise) */}
+                                    <motion.div
+                                        className="absolute w-[120%] h-[120%] md:w-[600px] md:h-[300px] rounded-[100%] border border-cyan-400/40 border-dashed"
+                                        animate={{ rotate: 360 }}
+                                        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+                                    />
+                                    {/* Ring 2 - Verticalish (Counter-Clockwise) */}
+                                    <motion.div
+                                        className="absolute w-[120%] h-[120%] md:w-[300px] md:h-[600px] rounded-[100%] border border-violet-400/40 border-dashed"
+                                        animate={{ rotate: -360 }}
+                                        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+                                    />
+                                </div>
+                                {/* END Middle Section */}
 
                                 {/* Keyboard Hints - Desktop Only */}
                                 {!isMobile && (
