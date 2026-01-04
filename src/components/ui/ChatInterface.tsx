@@ -662,6 +662,32 @@ export default function ChatInterface() {
                 {/* Interactive Starfield Background (Canvas) */}
                 <InteractiveConstellation />
 
+                {/* INDEPENDENT 3D GLOBE LAYER - Decoupled from Text Flow */}
+                {messages.length === 0 && (
+                    <>
+                        {/* Rotating Wireframe Globe */}
+                        <div className="absolute top-[15%] md:top-0 inset-x-0 h-[300px] md:h-full flex items-center justify-center pointer-events-none z-0 overflow-hidden">
+                            <WireframeGlobe className="scale-[1.0] md:scale-[2.8] opacity-30 mix-blend-screen" />
+                        </div>
+
+                        {/* Dual Counter-Rotating Rings (Gyroscope) */}
+                        <div className="absolute top-[15%] md:top-0 inset-x-0 h-[300px] md:h-full flex items-center justify-center pointer-events-none z-0">
+                            {/* Ring 1 */}
+                            <motion.div
+                                className="absolute w-[300px] h-[300px] md:w-[600px] md:h-[300px] rounded-[100%] border border-cyan-400/40 border-dashed"
+                                animate={{ rotate: 360 }}
+                                transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+                            />
+                            {/* Ring 2 */}
+                            <motion.div
+                                className="absolute w-[300px] h-[300px] md:w-[300px] md:h-[600px] rounded-[100%] border border-violet-400/40 border-dashed"
+                                animate={{ rotate: -360 }}
+                                transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+                            />
+                        </div>
+                    </>
+                )}
+
                 {/* Messages Container */}
                 <div className="flex-1 overflow-y-auto custom-scrollbar scroll-smooth" ref={scrollRef} onScroll={handleScroll}>
                     <div className={cn(
@@ -675,27 +701,6 @@ export default function ChatInterface() {
                                     animate={{ opacity: 1, y: 0 }}
                                     className="relative z-10 flex flex-col items-center justify-center p-2"
                                 >
-                                    {/* Rotating Wireframe Globe Background - SIZED TO FIT */}
-                                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[-1] overflow-hidden -translate-y-20 md:translate-y-0">
-                                        <WireframeGlobe className="scale-[1.0] md:scale-[2.8] opacity-30 mix-blend-screen" />
-                                    </div>
-
-                                    {/* Dual Counter-Rotating Rings (Gyroscope Effect) */}
-                                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                                        {/* Ring 1 - Horizontalish (Clockwise) */}
-                                        <motion.div
-                                            className="absolute w-[120%] h-[120%] md:w-[600px] md:h-[300px] rounded-[100%] border border-cyan-400/40 border-dashed"
-                                            animate={{ rotate: 360 }}
-                                            transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-                                        />
-                                        {/* Ring 2 - Verticalish (Counter-Clockwise) */}
-                                        <motion.div
-                                            className="absolute w-[120%] h-[120%] md:w-[300px] md:h-[600px] rounded-[100%] border border-violet-400/40 border-dashed"
-                                            animate={{ rotate: -360 }}
-                                            transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-                                        />
-                                    </div>
-
                                     <h1 className="relative text-3xl md:text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60 pb-2 filter drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]">
                                         CortexAlpha
                                     </h1>
