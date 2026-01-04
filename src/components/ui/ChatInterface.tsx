@@ -664,14 +664,20 @@ export default function ChatInterface() {
                 <InteractiveConstellation />
 
                 {/* Messages Container */}
-                <div className="flex-1 overflow-y-auto custom-scrollbar scroll-smooth" ref={scrollRef} onScroll={handleScroll}>
+                <div className="flex-1 overflow-y-auto custom-scrollbar scroll-smooth relative" ref={scrollRef} onScroll={handleScroll}>
+                    {messages.length === 0 && isMobile && (
+                        <div className="absolute inset-0 z-10 bg-black">
+                            <EmptyStateLite onSuggestionClick={(prompt) => handleSubmit(undefined, prompt)} />
+                        </div>
+                    )}
+
                     <div className={cn(
                         "w-full max-w-5xl mx-auto px-4 pt-4 md:pt-24 pb-24 md:pb-40 min-h-full flex flex-col justify-end transition-all duration-300 ease-in-out", // Anchor to bottom
                         artifact.isOpen && "mr-[45%] md:mr-[46%]"
                     )}>
                         {messages.length === 0 ? (
                             isMobile ? (
-                                <EmptyStateLite onSuggestionClick={(prompt) => handleSubmit(undefined, prompt)} />
+                                null // Handled by absolute overlay above
                             ) : (
                                 <div className="flex flex-col justify-end items-center text-center space-y-2 md:space-y-8 animate-fade-in"> {/* Desktop Empty State */}
                                     <motion.div
