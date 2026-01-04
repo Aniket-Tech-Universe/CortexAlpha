@@ -11,16 +11,11 @@ const MODELS = {
     LAST_RESORT: "gemini-pro-latest"      // High-intelligence fallback
 };
 
-const fs = require('fs');
-const path = require('path');
-
 function logServer(message: string) {
     const timestamp = new Date().toISOString();
     const cleanMsg = message.replace(/\n/g, ' ');
-    const logLine = `[${timestamp}] ${cleanMsg}\n`;
-    try {
-        fs.appendFileSync(path.join(process.cwd(), 'server-debug.log'), logLine);
-    } catch (e) { /* ignore */ }
+    const logLine = `[${timestamp}] ${cleanMsg}`;
+    console.log(logLine);
 }
 
 // --- Hydra Protocol: Key Management ---
