@@ -371,6 +371,13 @@ export default function ChatInterface() {
 
     if (!mounted) return null;
 
+    const suggestions = [
+        { icon: Code, text: "Debug a React component", prompt: "Help me debug this React component that's not rendering correctly" },
+        { icon: PenTool, text: "Write a blog post", prompt: "Write a blog post about the future of AI" },
+        { icon: BarChart3, text: "Analyze data", prompt: "Analyze this sales data and provide insights" },
+        { icon: Lightbulb, text: "Brainstorm ideas", prompt: "Brainstorm innovative startup ideas in the AI space" },
+    ];
+
     return (
         <div className="fixed inset-0 overflow-hidden font-sans text-zinc-100 pb-safe z-0 bg-black">
             {/* Sidebar */}
