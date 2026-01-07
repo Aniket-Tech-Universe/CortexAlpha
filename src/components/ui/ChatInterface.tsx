@@ -15,7 +15,6 @@ import { SettingsModal } from "./SettingsModal";
 import { ArtifactPanel } from "./ArtifactPanel";
 import { useIsMobile } from "../../hooks/use-mobile";
 import { EmptyStateLite } from "./empty-state-lite";
-import { SUGGESTIONS } from "@/lib/data/suggestions";
 
 export default function ChatInterface() {
     const isMobile = useIsMobile();
@@ -740,7 +739,7 @@ export default function ChatInterface() {
                                         "w-full max-w-2xl px-4 mt-4 md:mt-24 relative z-20", // Reduced margin to mt-4
                                         isMobile ? "overflow-x-auto scrolbar-hide -mx-4 pb-4 snap-x flex gap-3 pr-8" : "grid grid-cols-1 md:grid-cols-2 gap-3"
                                     )}>
-                                        {SUGGESTIONS.map((s, i) => (
+                                        {suggestions.map((s, i) => (
                                             <motion.div
                                                 key={i}
                                                 initial={{ opacity: 0, y: 20 }}
