@@ -15,6 +15,7 @@ import { SettingsModal } from "./SettingsModal";
 import { ArtifactPanel } from "./ArtifactPanel";
 import { useIsMobile } from "../../hooks/use-mobile";
 import { EmptyStateLite } from "./empty-state-lite";
+import { SUGGESTIONS } from "@/lib/data/suggestions";
 
 export default function ChatInterface() {
     const isMobile = useIsMobile();
@@ -371,13 +372,6 @@ export default function ChatInterface() {
 
     if (!mounted) return null;
 
-    const suggestions = [
-        { icon: Code, text: "Debug a React component", prompt: "Help me debug a React component that isn't re-rendering correctly." },
-        { icon: PenTool, text: "Write a blog post", prompt: "Write an engaging blog post about the future of AI interfaces." },
-        { icon: Lightbulb, text: "Explain Quantum Physics", prompt: "Explain the basics of quantum physics to a 5-year-old." },
-        { icon: Sparkles, text: "Creative Story", prompt: "Write a short sci-fi story about a robot who loves gardening." },
-    ];
-
     return (
         <div className="fixed inset-0 overflow-hidden font-sans text-zinc-100 pb-safe z-0 bg-black">
             {/* Sidebar */}
@@ -666,7 +660,7 @@ export default function ChatInterface() {
                 {/* Messages Container */}
                 <div className="flex-1 overflow-y-auto custom-scrollbar scroll-smooth relative" ref={scrollRef} onScroll={handleScroll}>
                     {messages.length === 0 && isMobile && (
-                        <div className="absolute inset-0 z-10 bg-black">
+                        <div className="absolute inset-0 z-10 bg-black/85 backdrop-blur-sm">
                             <EmptyStateLite onSuggestionClick={(prompt) => handleSubmit(undefined, prompt)} />
                         </div>
                     )}
@@ -746,7 +740,7 @@ export default function ChatInterface() {
                                         "w-full max-w-2xl px-4 mt-4 md:mt-24 relative z-20", // Reduced margin to mt-4
                                         isMobile ? "overflow-x-auto scrolbar-hide -mx-4 pb-4 snap-x flex gap-3 pr-8" : "grid grid-cols-1 md:grid-cols-2 gap-3"
                                     )}>
-                                        {suggestions.map((s, i) => (
+                                        {SUGGESTIONS.map((s, i) => (
                                             <motion.div
                                                 key={i}
                                                 initial={{ opacity: 0, y: 20 }}

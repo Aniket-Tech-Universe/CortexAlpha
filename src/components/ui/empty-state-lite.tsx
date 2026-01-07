@@ -1,15 +1,10 @@
 "use client"
 
 import { SpotlightCard } from "./spotlight-card"
-import { Code, PenTool, BarChart3, Lightbulb } from "lucide-react"
+import { SUGGESTIONS } from "@/lib/data/suggestions"
 
-// Static suggestions for mobile
-const suggestions = [
-    { icon: Code, text: "Debug a React component", prompt: "Help me debug this React component that's not rendering correctly" },
-    { icon: PenTool, text: "Write a blog post", prompt: "Write a blog post about the future of AI" },
-    { icon: BarChart3, text: "Analyze data", prompt: "Analyze this sales data and provide insights" },
-    { icon: Lightbulb, text: "Brainstorm ideas", prompt: "Brainstorm innovative startup ideas in the AI space" },
-]
+// Mobile-optimized empty state
+
 
 interface EmptyStateLiteProps {
     onSuggestionClick: (prompt: string) => void
@@ -53,7 +48,7 @@ export function EmptyStateLite({ onSuggestionClick }: EmptyStateLiteProps) {
 
                 {/* 3. MIDDLE: Suggestions (2x2 Grid Stack) - WIDER CONTAINER */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-2 w-full max-w-[400px] grid grid-cols-2 gap-3 px-4 animate-fade-in-up animation-delay-300 z-20">
-                    {suggestions.map((s, i) => (
+                    {SUGGESTIONS.map((s, i) => (
                         <div
                             key={i}
                             onClick={() => onSuggestionClick(s.prompt)}
