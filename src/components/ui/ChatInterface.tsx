@@ -1,6 +1,6 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, Menu, Plus, Upload, X, MoreHorizontal, MoreVertical, MessageSquare, Trash2, Edit2, Pin, ChevronRight, Sparkles, Code, PenTool, Lightbulb, PanelLeftClose, PanelLeftOpen, Settings as SettingsIcon, Maximize2, Copy, ThumbsUp, ThumbsDown, RefreshCw, Square, ChevronDown, ArrowDown, Zap, FileText, FileCode, FileImage, File as FileIcon, Download, Image } from "lucide-react";
+import { Send, Menu, Plus, Upload, X, MoreHorizontal, MoreVertical, MessageSquare, Trash2, Edit2, Pin, ChevronRight, Sparkles, Code, PenTool, Lightbulb, BarChart3, PanelLeftClose, PanelLeftOpen, Settings as SettingsIcon, Maximize2, Copy, ThumbsUp, ThumbsDown, RefreshCw, Square, ChevronDown, ArrowDown, Zap, FileText, FileCode, FileImage, File as FileIcon, Download, Image } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { SpotlightCard } from "./spotlight-card";
